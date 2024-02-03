@@ -15,9 +15,13 @@ const EmployeeLogin = () => {
         event.preventDefault()
         axios.post('http://localhost:3000/employee/employeelogin', values)
             .then(result => {
-                if(result.data.Status)
+                if(result.data.loginStatus)
                 {
-                    
+                    navigate('/dashboard')
+                }
+                else
+                {
+                    setError(result.data.Error)
                 }
             })
     }

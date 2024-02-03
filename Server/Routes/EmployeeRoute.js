@@ -9,7 +9,7 @@ router.post('/employeelogin', (req, res) => {
     con.query(sql, [req.body.email], (err, result) => {
         if (err) return res.json({ loginStatus: false, Error: "Query Error" });
         if (result.length > 0) {
-            bcrypt.compare(req.body.password, result[0].password, (err, result) => {
+            bcrypt.compare(req.body.password, result[0].password, (err, response) => {
                 if (err) return res.json({ loginStatus: false, Error: "Wrong Password" })
                 if (response) {
                     const email = result[0].email;
