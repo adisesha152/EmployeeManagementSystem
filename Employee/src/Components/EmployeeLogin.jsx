@@ -13,11 +13,11 @@ const EmployeeLogin = () => {
     axios.defaults.withCredentials = true;
     const handleSubmit = (event) => {
         event.preventDefault()
-        axios.post('http://localhost:3000/auth/employeelogin', values)
+        axios.post('http://localhost:3000/employee/employeelogin', values)
             .then(result => {
                 if(result.data.Status)
                 {
-                    console.log(result.data)
+                    
                 }
             })
     }
