@@ -17,13 +17,15 @@ const EmployeeLogin = () => {
             .then(result => {
                 if(result.data.loginStatus)
                 {
-                    navigate('/dashboard')
+                    localStorage.setItem('valid', true)
+                    navigate('/employeedetails/'+result.data.id)
                 }
                 else
                 {
                     setError(result.data.Error)
                 }
             })
+            .catch(err => console.log(err))
     }
   return (
     <div className='d-flex justify-content-center align-items-center vh-100 loginPage'>

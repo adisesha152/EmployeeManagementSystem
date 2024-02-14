@@ -14,21 +14,34 @@ router.post('/employeelogin', (req, res) => {
                 if (response) {
                     const email = result[0].email;
                     const token = jwt.sign(
-                        { role: "admin", email: email },
+                        { role: "employee", email: email, id : result[0].id },
                         "jwt_secret_key",
                         { expiresIn: "1d" }
                     );
                     res.cookie('token', token)
-                    return res.json({ loginStatus: true });
+                    return res.json({ loginStatus: true, id: result[0].id});
                 }
             })
-
         }
         else {
             return res.json({ loginStatus: false, Error: "Wrong Email or Password" });
         }
     });
 });
+
+router.get('/details/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "SELECT employee.id, employee.name, employee.email, employee.address, employee.salary, category.name AS category FROM employee JOIN category ON employee.category_id = category.id";
+    con.query(sql, [id], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"})
+        return res.json({Status: true, Result: result})
+    })
+})
+
+router.get('/logout', (req, res) => {
+    res.clearCookie('token')
+    return res.json({Status: true })
+})
 
 
 export { router as EmployeeRouter }
