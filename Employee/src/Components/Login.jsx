@@ -36,7 +36,7 @@ const Login = () => {
             <div className='text-warning'>
                 {error && error}
             </div>
-            <h2>Login Page</h2>
+            <h2 className='text-center'>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className='mb-3'>
                     <label htmlFor="Email">Email: </label>

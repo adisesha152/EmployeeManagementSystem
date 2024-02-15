@@ -33,7 +33,7 @@ const EmployeeLogin = () => {
             <div className='text-warning'>
                 {error && error}
             </div>
-            <h2>Login Page</h2>
+            <h2 className='text-center'>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className='mb-3'>
                     <label htmlFor="Email">Email: </label>
@@ -45,7 +45,7 @@ const EmployeeLogin = () => {
                     <input type="password" name="Password" id="password" placeholder='Enter Password' autoComplete='off'
                     onChange={(e) => setValues({...values, password : e.target.value})} className='form-control rounded-0'/>
                 </div>
-                <button className='btn btn-success w-100 rounded-0 mb-2'>Log In</button>
+                <button className='btn btn-secondary w-100 rounded-0 mb-2'>Log In</button>
                 <div className='mb-1'>
                     <input type='checkbox' name='tick' id='tick' className='me-2' required/>
                     <label htmlFor="Password">I Agree with terms & conditions</label>

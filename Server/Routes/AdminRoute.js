@@ -106,6 +106,15 @@ router.delete('/delete_employee/:id', (req, res) => {
     })
 })
 
+router.get('/profile', (req, res) => {
+    const email = req.body.email;
+    const sql = "SELECT email FROM admin WHERE email = ?";
+    con.query(sql, [email], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"})
+        return res.json({Status: true, Result: result})
+    })
+})
+
 router.get('/admin_count', (req, res) => {
     const sql = "SELECT COUNT(id) AS admin FROM admin";
     con.query(sql, (err, result) => {
