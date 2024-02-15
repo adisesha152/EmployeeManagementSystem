@@ -4,15 +4,22 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 const EmployeeDetails = () => {
   const [employee, setEmployee] = useState([])
+  const [category, setCategory] = useState([])
   const navigate = useNavigate()
     const {id} = useParams()
     useEffect(() => {
         axios.get('http://localhost:3000/employee/details/'+id)
         .then(result => {
-          setEmployee(result.data.Result[0])
+          setEmployee(result.data.Status ? result.data.Result[0] : null)
         })
         .catch(err => console.log(err))
-    }, [])
+
+        axios.get('http://localhost:3000/employee/category/'+id)
+        .then(result => {
+          setCategory(result.data.Status ? result.data.Result[0] : null)
+        })
+        .catch(err => console.log(err))
+    }, [id])
     axios.defaults.withCredentials = true;
     const handleLogout = () => {
         axios.get('http://localhost:3000/employee/logout')
@@ -35,7 +42,7 @@ const EmployeeDetails = () => {
               <div className='d-flex align-items-center flex-column mt-5 '>
                   <h3>{employee.name}</h3>
                   <h3>{employee.email}</h3>
-                  <h3>{employee.category}</h3>
+                  <h3>{category.name}</h3>
                   <h3>${employee.salary}</h3>
               </div>
               <div className='mb-5'>

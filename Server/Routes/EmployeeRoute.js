@@ -31,7 +31,16 @@ router.post('/employeelogin', (req, res) => {
 
 router.get('/details/:id', (req, res) => {
     const id = req.params.id;
-    const sql = "SELECT employee.id, employee.name, employee.email, employee.address, employee.salary, category.name AS category FROM employee JOIN category ON employee.category_id = category.id";
+    const sql = "SELECT * FROM employee WHERE id = ?";
+    con.query(sql, [id], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"})
+        return res.json({Status: true, Result: result})
+    })
+})
+
+router.get('/category/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "SELECT name FROM category WHERE id = (SELECT category_id FROM employee WHERE id = ?)";
     con.query(sql, [id], (err, result) => {
         if(err) return res.json({Status: false, Error: "Query Error"})
         return res.json({Status: true, Result: result})

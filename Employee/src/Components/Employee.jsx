@@ -7,8 +7,7 @@ const Employee = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/auth/employee")
+    axios.get("http://localhost:3000/auth/employee")
       .then((result) => {
         if (result.data.Status) {
           setEmployee(result.data.Result);
