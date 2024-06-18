@@ -1,8 +1,8 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom'
 import Login from './Components/Login'
 import Dashboard from './Components/Dashboard'
-import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom'
 import Home from './Components/Home'
 import Employee from './Components/Employee'
 import Category from './Components/Category'
@@ -13,7 +13,6 @@ import EditEmployee from './Components/EditEmployee'
 import Start from './Components/Start'
 import EmployeeLogin from './Components/EmployeeLogin'
 import EmployeeDetails from './Components/EmployeeDetails'
-import { useEffect } from 'react'
 import PrivateRoute from './Components/PrivateRoute'
 
 function App() {
